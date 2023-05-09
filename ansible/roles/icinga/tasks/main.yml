@@ -1,0 +1,16 @@
+---
+- name: install icinga packages
+  with_items: "{{ icinga_packages }}"
+  package:
+    name: "{{ item.name }}"
+    state: latest
+  notify:
+    - restart php-fpm
+    - restart icinga
+
+- name: enable icinga service
+  template:
+    src: icinga2.j2
+    dest: /etc/rc.conf.d/icinga2
+  notify:
+    - restart icinga

@@ -1,0 +1,4 @@
+---
+icinga_packages:
+  - name: icinga2
+  - name: icingaweb2-{{ php_prefix }}
